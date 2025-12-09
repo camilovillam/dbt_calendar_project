@@ -9,4 +9,3 @@ select
     {{ convert_to_timezone('end_datetime', 'America/Bogota') }}   AS end_colombia
 
 from base
-
