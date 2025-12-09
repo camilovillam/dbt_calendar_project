@@ -5,8 +5,8 @@ with base as (
 select
     *,
     -- derive Colombian time
-    {{ convert_to_timezone('start_json', 'America/Bogota') }} AS start_colombia,
-    {{ convert_to_timezone('end_json', 'America/Bogota') }}   AS end_colombia
+    {{ convert_to_timezone('start_datetime', 'America/Bogota') }} AS start_colombia,
+    {{ convert_to_timezone('end_datetime', 'America/Bogota') }}   AS end_colombia
 
 from base
 
