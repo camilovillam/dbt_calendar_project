@@ -22,4 +22,4 @@ select
 
 from base,
      json_each(base.attendees_json) as att
-order by event_sk, attendee_index;
+order by event_sk, attendee_index
