@@ -1,6 +1,6 @@
 with base as (
     select *
-    from {{ ref('stg_outlook_calendar_events_flat') }}
+    from {{ ref('stg_outlook_calendar_events_deduped') }}
 )
 select
     *,
