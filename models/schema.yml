@@ -1,0 +1,69 @@
+version: 2
+
+models:
+  - name: stg_outlook_calendar_events_flat
+    description: "Staging model with raw Outlook events flattened (raw duplicates included)"
+    columns:
+      - name: event_sk
+        description: "Surrogate key combining file_row_num and event_index, unique only within each raw file"
+        tests:
+          - unique
+          - not_null
+      - name: event_id
+        description: "Event ID from GraphAPI"
+        tests:
+          - not_null
+          # uniqueness not enforced here, delta queries can produce duplicates
+
+  - name: stg_outlook_calendar_events_deduped
+    description: "Staging model with deduplication applied by event_id, keeping latest modified version"
+    columns:
+      - name: event_id
+        description: "Natural key for events, deduplicated"
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_outlook_calendar_events_tz_adjusted
+    description: "Staging model with timezone-adjusted datetimes (built on deduped events)"
+    columns:
+      - name: start_colombia
+        tests:
+          - not_null
+      - name: end_colombia
+        tests:
+          - not_null
+
+  - name: dim_meeting_series
+    description: "Series master events"
+    columns:
+      - name: event_id
+        tests:
+          - unique
+          - not_null
+
+  - name: fct_calendar_events
+    description: "Fact table of calendar events (singleInstance, occurrence, exception)"
+    columns:
+      - name: event_sk
+        description: "Deterministic surrogate key generated as md5(event_id || '-' || event_type)"
+        tests:
+          - unique
+          - not_null
+      - name: event_id
+        description: "Natural event identifier from GraphAPI"
+        tests:
+          - not_null
+      - name: event_type
+        description: "Type of event"
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['singleInstance','occurrence','exception']
+      - name: series_master_id
+        description: "Foreign key to series master"
+        tests:
+          - relationships:
+              arguments:
+                to: ref('dim_meeting_series')
+                field: event_id

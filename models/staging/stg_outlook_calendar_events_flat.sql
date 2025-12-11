@@ -46,10 +46,6 @@ select
     json_extract_string(je.value, '$.end.dateTime')   as end_datetime,
     json_extract_string(je.value, '$.end.timeZone')   as end_timezone,
 
-    -- Location (expanded)
-    json_extract_string(je.value, '$.location.displayName') as location_displayName,
-    json_extract(je.value, '$.location.address')            as location_address_json,
-
     -- Arrays (kept as JSON blobs)
     json_extract(je.value, '$.locations')  as locations_json,
     json_extract(je.value, '$.attendees')  as attendees_json,
@@ -65,6 +61,7 @@ select
     json_extract_string(je.value, '$.isDraft')              as is_draft,
     json_extract_string(je.value, '$.isReminderOn')         as is_reminder_on,
     json_extract_string(je.value, '$.reminderMinutesBeforeStart') as reminder_minutes_before_start,
+    json_extract_string(je.value, '$.seriesMasterId') AS series_master_id,
 
     -- Event-level response status (expanded)
     json_extract_string(je.value, '$.responseStatus.response') as event_response,
