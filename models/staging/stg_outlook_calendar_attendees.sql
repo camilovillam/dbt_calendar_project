@@ -3,7 +3,7 @@ with base as (
         event_sk,
         attendees_json
     from
-        {{ ref('stg_outlook_calendar_events_flat') }}
+        {{ ref('stg_outlook_calendar_events_deduped') }}
     where attendees_json is not null
 )
 

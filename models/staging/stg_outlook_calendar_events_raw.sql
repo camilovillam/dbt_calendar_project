@@ -8,3 +8,4 @@ select
 
 from
     {{ source('outlook','calendar_events') }}
+    where filename like '%2023%'
