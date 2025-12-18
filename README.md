@@ -1,15 +1,8 @@
-Welcome to your new dbt project!
+## GitHub repository for a dbt sample project: Transforming Calendar data
 
-### Using the starter project
-
-Try running the following commands:
-- dbt run
-- dbt test
-
+December, 2025. Camilo Villa
+dbt-core
 
 ### Resources:
-- Learn more about dbt [in the docs](https://docs.getdbt.com/docs/introduction)
-- Check out [Discourse](https://discourse.getdbt.com/) for commonly asked questions and answers
-- Join the [chat](https://community.getdbt.com/) on Slack for live discussions and support
-- Find [dbt events](https://events.getdbt.com) near you
-- Check out [the blog](https://blog.getdbt.com/) for the latest news on dbt's development and best practices
+- Related [blog post](https://camilovilla.net/blog/an-introduction-to-dbt)
+- Related [video](https://www.loom.com/share/24388e3dab5b4cc181d21fa2c95334c8)
