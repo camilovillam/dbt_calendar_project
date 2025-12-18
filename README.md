@@ -1,6 +1,7 @@
 ## GitHub repository for a dbt sample project: Transforming Calendar data
 
 December, 2025. Camilo Villa
+
 dbt-core
 
 ### Resources:
